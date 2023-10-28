@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json.schemastore.org/template",
+  "author": "Enis Mulic",
+  "classifications": ["Api"],
+  "identity": "VerticalSliceMinimalApi",
+  "name": "Vertical Slice Minimal Api",
+  "shortName": "vsma",
+  "sourceName": "ProjectName",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  }
+}
