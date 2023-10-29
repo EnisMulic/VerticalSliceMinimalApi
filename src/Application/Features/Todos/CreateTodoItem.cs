@@ -1,5 +1,6 @@
 ﻿using Application.Common.Exceptions;
 using Application.Common.Interfaces;
+using Application.Common.Models;
 using Application.Domain.Entities;
 using Application.Domain.Enums;
 using Application.Infrastructure.Persistance;
@@ -14,7 +15,6 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.OpenApi.Models;
 
 namespace Application.Features.Todos;
 
@@ -33,10 +33,10 @@ public class CreateTodoItemModule : ICarterModule
         .Produces(StatusCodes.Status400BadRequest)
         .WithOpenApi(operation => new(operation)
         {
-            Tags = new List<OpenApiTag>() { new OpenApiTag { Name = "Todo Lists" } },
+            Tags = OpenApiTags.TodoList,
             Summary = "Create a todo item",
             Description = "Create a todo item",
-        }); ;
+        });
     }
 }
 

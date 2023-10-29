@@ -14,7 +14,9 @@ public static class ConfigureInfrastructureServices
 {
     public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddScoped<AuditableEntitySaveChangesInterceptor>();
+        services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
+        services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
+        services.AddScoped<ISaveChangesInterceptor, SoftDeleteInterceptor>();
 
         services.AddDbContext<ApplicationDbContext>((sp, options) =>
         {

@@ -1,4 +1,5 @@
-﻿using Application.Domain.Entities;
+﻿using Application.Common.Models;
+using Application.Domain.Entities;
 using Application.Domain.ValueObjects;
 using Application.Infrastructure.Persistance;
 
@@ -11,7 +12,6 @@ using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
-using Microsoft.OpenApi.Models;
 
 namespace Application.Features.Todos;
 
@@ -28,7 +28,7 @@ public class CreateTodoListModule : ICarterModule
         .Produces(StatusCodes.Status400BadRequest)
         .WithOpenApi(operation => new(operation)
         {
-            Tags = new List<OpenApiTag>() { new OpenApiTag { Name = "Todo Lists" } },
+            Tags = OpenApiTags.TodoList,
             Summary = "Create a todo list",
             Description = "Create a todo list",
         });

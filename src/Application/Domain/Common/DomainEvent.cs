@@ -1,3 +1,5 @@
+using MediatR;
+
 namespace Application.Domain.Common;
 
 public interface IHasDomainEvent
@@ -5,7 +7,7 @@ public interface IHasDomainEvent
     public List<DomainEvent> DomainEvents { get; }
 }
 
-public abstract class DomainEvent
+public abstract class DomainEvent : INotification
 {
     protected DomainEvent()
     {

@@ -42,7 +42,6 @@
     <None Remove="Domain\Entities\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Common\" />
     <Folder Include="Authorization\" />
   </ItemGroup>
   <ItemGroup>
