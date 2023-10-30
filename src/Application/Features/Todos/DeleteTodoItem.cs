@@ -1,4 +1,5 @@
-﻿using Application.Common.Exceptions;
+﻿using Application.Authorization;
+using Application.Common.Exceptions;
 using Application.Common.Models;
 using Application.Domain.Entities;
 using Application.Infrastructure.Persistance;
@@ -23,6 +24,7 @@ public class DeleteTodoItemModule : ICarterModule
 
             return Results.NoContent();
         })
+        .RequireAuthorization(policy => policy.RequireRole(Roles.Administrator))
         .Produces(StatusCodes.Status204NoContent)
         .WithOpenApi(operation => new(operation)
         {

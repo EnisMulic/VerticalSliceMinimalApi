@@ -24,6 +24,7 @@ public class GetTodosModule : ICarterModule
             var response = await mediator.Send(new GetTodosQuery());
             return response;
         })
+        .RequireAuthorization()
         .Produces<int>(StatusCodes.Status201Created)
         .Produces(StatusCodes.Status400BadRequest)
         .WithOpenApi(operation => new(operation)
@@ -31,7 +32,7 @@ public class GetTodosModule : ICarterModule
             Tags = OpenApiTags.TodoList,
             Summary = "Get todos",
             Description = "Get todos",
-        }); ;
+        });
     }
 }
 
