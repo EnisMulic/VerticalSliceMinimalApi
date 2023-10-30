@@ -8,7 +8,7 @@ namespace Api;
 
 public static class ConfigureApiServices
 {
-    public static IServiceCollection AddApiServices(this IServiceCollection services, ConfigurationManager configuration)
+    public static IServiceCollection AddApiServices(this IServiceCollection services)
     {
         services.AddSingleton<ICurrentUserService, CurrentUserService>();
 

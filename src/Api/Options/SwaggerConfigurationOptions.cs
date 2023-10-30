@@ -7,27 +7,21 @@ namespace Api.Options;
 
 public class SwaggerConfigurationOptions : IConfigureOptions<SwaggerGenOptions>
 {
-    private readonly IConfiguration _configuration;
-
-    public SwaggerConfigurationOptions(IConfiguration configuration)
+    public SwaggerConfigurationOptions()
     {
-        _configuration = configuration;
     }
 
     public void Configure(SwaggerGenOptions options)
     {
-
-        options.AddSecurityDefinition("aad-jwt", new OpenApiSecurityScheme
+        options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
         {
-            Type = SecuritySchemeType.OAuth2,
-            Flows = new OpenApiOAuthFlows
-            {
-                AuthorizationCode = new OpenApiOAuthFlow
-                {
-                }
-            }
+            Name = "Authorization",
+            Type = SecuritySchemeType.ApiKey,
+            Scheme = "Bearer",
+            BearerFormat = "JWT",
+            In = ParameterLocation.Header,
+            Description = "JWT Authorization header using the Bearer scheme."
         });
-
         options.AddSecurityRequirement(new OpenApiSecurityRequirement
         {
             {
@@ -36,12 +30,37 @@ public class SwaggerConfigurationOptions : IConfigureOptions<SwaggerGenOptions>
                     Reference = new OpenApiReference
                     {
                         Type = ReferenceType.SecurityScheme,
-                        Id = "aad-jwt"
-                    },
-                    UnresolvedReference = true
+                        Id = "Bearer"
+                    }
                 },
                 Array.Empty<string>()
             }
         });
+
+        //options.AddSecurityDefinition("aad-jwt", new OpenApiSecurityScheme
+        //{
+        //    Type = SecuritySchemeType.OAuth2,
+        //    Flows = new OpenApiOAuthFlows
+        //    {
+        //        AuthorizationCode = new OpenApiOAuthFlow
+        //        {
+        //        }
+        //    }
+        //});
+        //options.AddSecurityRequirement(new OpenApiSecurityRequirement
+        //{
+        //    {
+        //        new OpenApiSecurityScheme
+        //        {
+        //            Reference = new OpenApiReference
+        //            {
+        //                Type = ReferenceType.SecurityScheme,
+        //                Id = "aad-jwt"
+        //            },
+        //            UnresolvedReference = true
+        //        },
+        //        Array.Empty<string>()
+        //    }
+        //});
     }
 }

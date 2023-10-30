@@ -14,7 +14,6 @@ using Carter;
 
 using Hellang.Middleware.ProblemDetails;
 
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -41,19 +40,20 @@ builder.Services.AddSwaggerGen(options => options.SwaggerDoc("v1", new OpenApiIn
 //builder.Services.ConfigureSwaggerGen(options => options.CustomSchemaIds(x => x.FullName));
 
 builder.Services.AddCors(options => options.AddDefaultPolicy(
-        policy => policy.AllowAnyOrigin()
-            .AllowAnyHeader()
-            .AllowAnyMethod()));
+    policy => policy.AllowAnyOrigin()
+        .AllowAnyHeader()
+        .AllowAnyMethod()));
 
 
 builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, SwaggerConfigurationOptions>();
 
 builder.Services.AddAndConfigureProblemDetails();
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme);
+builder.Services.AddAuthorization();
+builder.Services.AddAuthentication().AddJwtBearer();
 
 
-builder.Services.AddApiServices(builder.Configuration);
+builder.Services.AddApiServices();
 builder.Services.AddCommonServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddCarter();
