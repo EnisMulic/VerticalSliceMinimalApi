@@ -1,7 +1,4 @@
-﻿// CA1852 Type 'Program' can be sealed because it has no subtypes in its containing assembly and is not externally visible
-#pragma warning disable CA1852
-
-using Api;
+﻿using Api;
 using Api.Extensions;
 using Api.Options;
 using Api.Services;
@@ -36,8 +33,6 @@ builder.Services.AddSwaggerGen(options => options.SwaggerDoc("v1", new OpenApiIn
     Description = "<API Description Placeholder>",
 }));
 
-
-//builder.Services.ConfigureSwaggerGen(options => options.CustomSchemaIds(x => x.FullName));
 
 builder.Services.AddCors(options => options.AddDefaultPolicy(
     policy => policy.AllowAnyOrigin()

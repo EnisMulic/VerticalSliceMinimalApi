@@ -51,7 +51,7 @@ public class CompleteTodoCommandHandler : IRequestHandler<CompleteTodoCommand, U
 
         //if (!item.Done)
         //{
-            
+
         //}
 
         item.Complete();
