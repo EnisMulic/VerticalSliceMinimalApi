@@ -4,13 +4,38 @@
 
 ## Getting Started 
 
-## Requirments
+1. Clone the repository
+
+```sh
+git clone https://github.com/EnisMulic/VerticalSliceMinimalApi
+```
+
+2. Install the template
+
+```sh
+dotnet new install ./VerticalSliceMinimalApi
+```
+
+3. Use the installed template to create your API
+
+```sh
+dotnet new vsma --name ProjectName 
+```
 
 ## How to Run
 
+To start the app run:
+```sh
+dotnet run --project src/Api
+```
+
 ## Configuration
 
-## Database
+Configure the application using `appsettings.json`, `appsettings.Development.json` or [dotnet secrets](https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-7.0&tabs=windows)
+
+```sh
+dotnet user-secrets init --project src/Api
+```
 
 ## Auth
 
