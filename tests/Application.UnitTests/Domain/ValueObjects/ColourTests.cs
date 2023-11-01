@@ -7,7 +7,7 @@ namespace Application.UnitTests.Domain.ValueObjects;
 
 public class ColourTests
 {
-    [Fact]
+    [Test]
     public void ShouldReturnCorrectColourCode()
     {
         var code = "#FFFFFF";
@@ -17,7 +17,7 @@ public class ColourTests
         colour.Code.Should().Be(code);
     }
 
-    [Fact]
+    [Test]
     public void ToStringReturnsCode()
     {
         var colour = Colour.White;
@@ -25,7 +25,7 @@ public class ColourTests
         colour.ToString().Should().Be(colour.Code);
     }
 
-    [Fact]
+    [Test]
     public void ShouldPerformImplicitConversionToColourCodeString()
     {
         string code = Colour.White;
@@ -33,7 +33,7 @@ public class ColourTests
         code.Should().Be("#FFFFFF");
     }
 
-    [Fact]
+    [Test]
     public void ShouldPerformExplicitConversionGivenSupportedColourCode()
     {
         var colour = (Colour)"#FFFFFF";
@@ -41,7 +41,7 @@ public class ColourTests
         colour.Should().Be(Colour.White);
     }
 
-    [Fact]
+    [Test]
     public void ShouldThrowUnsupportedColourExceptionGivenNotSupportedColourCode()
     {
         FluentActions.Invoking(() => Colour.From("##FF33CC"))

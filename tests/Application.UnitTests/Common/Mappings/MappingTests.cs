@@ -1,49 +1,37 @@
-﻿using System.Runtime.Serialization;
+﻿using System.Reflection;
+using System.Runtime.Serialization;
 
-using Application.Common.Mappings;
 using Application.Domain.Entities;
 using Application.Features.Todos;
+using Application.Infrastructure.Persistance;
 
 using AutoMapper;
 
+
 namespace Application.UnitTests.Common.Mappings;
 
-public class MappingTestsFixture
-{
-    public MappingTestsFixture()
-    {
-        ConfigurationProvider = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>());
-
-        Mapper = ConfigurationProvider.CreateMapper();
-    }
-
-    public IConfigurationProvider ConfigurationProvider { get; }
-
-    public IMapper Mapper { get; }
-}
-
-public class MappingTests : IClassFixture<MappingTestsFixture>
+public class MappingTests
 {
     private readonly IConfigurationProvider _configuration;
-#pragma warning disable IDE0052
     private readonly IMapper _mapper;
-#pragma warning restore IDE0052
 
-    public MappingTests(MappingTestsFixture fixture)
+    public MappingTests()
     {
-        _configuration = fixture.ConfigurationProvider;
-        _mapper = fixture.Mapper;
+        _configuration = new MapperConfiguration(config =>
+            config.AddMaps(Assembly.GetAssembly(typeof(ApplicationDbContext))));
+
+        _mapper = _configuration.CreateMapper();
     }
 
-    [Fact]
+    [Test]
     public void ShouldHaveValidConfiguration()
     {
         _configuration.AssertConfigurationIsValid();
     }
 
-    [Theory]
-    [InlineData(typeof(TodoList), typeof(TodoListResponse))]
-    [InlineData(typeof(TodoItem), typeof(TodoItemResponse))]
+    [Test]
+    [TestCase(typeof(TodoList), typeof(TodoListResponse))]
+    [TestCase(typeof(TodoItem), typeof(TodoItemResponse))]
     public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
     {
         var instance = GetInstanceOf(source);
@@ -51,14 +39,17 @@ public class MappingTests : IClassFixture<MappingTestsFixture>
         _mapper.Map(instance, source, destination);
     }
 
-    private object? GetInstanceOf(Type type)
+    private object GetInstanceOf(Type type)
     {
         if (type.GetConstructor(Type.EmptyTypes) != null)
         {
-            return Activator.CreateInstance(type);
+            return Activator.CreateInstance(type)!;
         }
 
         // Type without parameterless constructor
+        // TODO: Figure out an alternative approach to the now obsolete `FormatterServices.GetUninitializedObject` method.
+#pragma warning disable SYSLIB0050 // Type or member is obsolete
         return FormatterServices.GetUninitializedObject(type);
+#pragma warning restore SYSLIB0050 // Type or member is obsolete
     }
 }

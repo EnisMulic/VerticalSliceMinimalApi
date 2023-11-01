@@ -8,7 +8,7 @@ namespace Application.UnitTests.Common.Exceptions;
 
 public class ValidationExceptionTests
 {
-    [Fact]
+    [Test]
     public void DefaultConstructorCreatesAnEmptyErrorDictionary()
     {
         var actual = new ValidationException().Errors;
@@ -16,7 +16,7 @@ public class ValidationExceptionTests
         actual.Keys.Should().BeEquivalentTo(Array.Empty<string>());
     }
 
-    [Fact]
+    [Test]
     public void SingleValidationFailureCreatesASingleElementErrorDictionary()
     {
         var failures = new List<ValidationFailure>
@@ -30,7 +30,7 @@ public class ValidationExceptionTests
         actual["Age"].Should().BeEquivalentTo(new string[] { "must be over 18" });
     }
 
-    [Fact]
+    [Test]
     public void MultipleValidationFailureForMultiplePropertiesCreatesAMultipleElementErrorDictionaryEachWithMultipleValues()
     {
         var failures = new List<ValidationFailure>
