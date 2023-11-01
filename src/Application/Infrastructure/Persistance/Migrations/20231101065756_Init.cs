@@ -1,11 +1,12 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace Application.Infrastructure.Persistance.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class Init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -23,7 +24,10 @@ namespace Application.Infrastructure.Persistance.Migrations
                     LastModified = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastModifiedBy = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
-                constraints: table => table.PrimaryKey("PK_TodoLists", x => x.Id));
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TodoLists", x => x.Id);
+                });
 
             migrationBuilder.CreateTable(
                 name: "TodoItems",
@@ -36,6 +40,7 @@ namespace Application.Infrastructure.Persistance.Migrations
                     PriorityLevel = table.Column<int>(type: "int", nullable: false),
                     Done = table.Column<bool>(type: "bit", nullable: false),
                     Reminder = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    IsDeleted = table.Column<bool>(type: "bit", nullable: false),
                     TodoListId = table.Column<int>(type: "int", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedBy = table.Column<string>(type: "nvarchar(max)", nullable: true),
