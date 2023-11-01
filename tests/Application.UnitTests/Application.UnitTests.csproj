@@ -35,8 +35,6 @@
     <Folder Include="Common\" />
     <Folder Include="Common\Exceptions\" />
     <Folder Include="Common\Mappings\" />
-    <Folder Include="Domain\" />
-    <Folder Include="Domain\ValueObjects\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\Application\Application.csproj" />

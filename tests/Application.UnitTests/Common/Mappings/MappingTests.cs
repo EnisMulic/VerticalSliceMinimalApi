@@ -1,6 +1,8 @@
 ﻿using System.Runtime.Serialization;
 
 using Application.Common.Mappings;
+using Application.Domain.Entities;
+using Application.Features.Todos;
 
 using AutoMapper;
 
@@ -39,16 +41,15 @@ public class MappingTests : IClassFixture<MappingTestsFixture>
         _configuration.AssertConfigurationIsValid();
     }
 
-    // TODO: left commented on purpose, so we have an example of test method for IMapper mappings
-    // [Theory]
-    // [InlineData(typeof(TodoList), typeof(TodoListDto))]
-    // [InlineData(typeof(TodoItem), typeof(TodoItemDto))]
-    // public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
-    // {
-    //     var instance = GetInstanceOf(source);
-    //
-    //     _mapper.Map(instance, source, destination);
-    // }
+    [Theory]
+    [InlineData(typeof(TodoList), typeof(TodoListResponse))]
+    [InlineData(typeof(TodoItem), typeof(TodoItemResponse))]
+    public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
+    {
+        var instance = GetInstanceOf(source);
+
+        _mapper.Map(instance, source, destination);
+    }
 
     private object? GetInstanceOf(Type type)
     {
