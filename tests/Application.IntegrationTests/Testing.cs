@@ -12,7 +12,7 @@ namespace Application.IntegrationTests;
 [SetUpFixture]
 public partial class Testing
 {
-    private static ITestDatabase _database;
+    private static ITestDatabase? _database;
     private static TestingWebApplicationFactory _factory = null!;
     private static IServiceScopeFactory _scopeFactory = null!;
     private static string? _userId;
@@ -52,6 +52,12 @@ public partial class Testing
 
     public static async Task ResetState()
     {
+        if (_database is null)
+        {
+            return;
+        }
+
+
         try
         {
             await _database.ResetAsync();
@@ -97,7 +103,10 @@ public partial class Testing
     [OneTimeTearDown]
     public async Task RunAfterAnyTests()
     {
-        await _database.DisposeAsync();
+        if (_database is not null)
+        {
+            await _database.DisposeAsync();
+        }
         await _factory.DisposeAsync();
     }
 }

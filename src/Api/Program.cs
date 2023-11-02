@@ -94,3 +94,5 @@ app.MapControllers();
 app.MapCarter();
 
 app.Run();
+
+public partial class Program { }

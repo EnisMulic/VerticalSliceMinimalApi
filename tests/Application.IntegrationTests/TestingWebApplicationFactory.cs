@@ -9,9 +9,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
-using Microsoft.VisualStudio.TestPlatform.TestHost;
 
 namespace Application.IntegrationTests;
+
 public class TestingWebApplicationFactory : WebApplicationFactory<Program>
 {
     private readonly DbConnection _connection;

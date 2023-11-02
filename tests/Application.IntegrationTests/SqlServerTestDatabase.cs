@@ -4,33 +4,32 @@ using Application.Infrastructure.Persistance;
 
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 using Respawn;
 
-using Testcontainers.MsSql;
-
 namespace Application.IntegrationTests;
 
-public class TestContainersDatabase : ITestDatabase
+public class SqlServerTestDatabase : ITestDatabase
 {
-    private readonly MsSqlContainer _container;
-    private DbConnection _connection = null!;
-    private string _connectionString = null!;
+    private readonly string _connectionString = null!;
+    private SqlConnection _connection = null!;
     private Respawner _respawner = null!;
 
-    public TestContainersDatabase()
+    public SqlServerTestDatabase()
     {
-        _container = new MsSqlBuilder()
-            .WithAutoRemove(true)
+        var configuration = new ConfigurationBuilder()
+            .AddJsonFile("appsettings.json")
+            .AddEnvironmentVariables()
             .Build();
+
+        var connectionString = configuration.GetConnectionString("Default") ?? string.Empty;
+
+        _connectionString = connectionString;
     }
 
     public async Task InitialiseAsync()
     {
-        await _container.StartAsync();
-
-        _connectionString = _container.GetConnectionString();
-
         _connection = new SqlConnection(_connectionString);
 
         var options = new DbContextOptionsBuilder<ApplicationDbContext>()
@@ -60,6 +59,5 @@ public class TestContainersDatabase : ITestDatabase
     public async Task DisposeAsync()
     {
         await _connection.DisposeAsync();
-        await _container.DisposeAsync();
     }
 }

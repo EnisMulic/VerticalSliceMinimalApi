@@ -11,7 +11,7 @@ public class CreateTodoListCommandTests : BaseTestFixture
     [Test]
     public async Task ShouldRequireMinimumFields()
     {
-        var command = new CreateTodoListCommand("", "");
+        var command = new CreateTodoListCommand("", "#FFFFFF");
 
         await FluentActions.Invoking(() =>
             SendAsync(command)).Should().ThrowAsync<ValidationException>();
@@ -38,7 +38,7 @@ public class CreateTodoListCommandTests : BaseTestFixture
 
         list.Should().NotBeNull();
         list!.Title.Should().Be(command.Title);
-        list!.Colour.Should().Be(command.Colour);
+        list!.Colour.Code.Should().Be(command.Colour);
         list.Created.Should().BeCloseTo(DateTime.Now, TimeSpan.FromMilliseconds(10000));
     }
 }
