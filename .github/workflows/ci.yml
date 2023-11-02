@@ -1,34 +1,33 @@
-on:
-  [push, pull_request]
+on: [push, pull_request]
 permissions:
   id-token: write
   contents: read
   checks: write
 
 jobs:
-  build: 
+  build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@main
+      - uses: actions/checkout@main
 
-    - name: Install dotnet
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: '7.0.x'
-    
-    - name: Restore dependencies
-      run: dotnet restore
+      - name: Install dotnet
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: "7.0.x"
 
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
+      - name: Restore dependencies
+        run: dotnet restore
 
-    - name: Test
-      run: dotnet test --no-restore --verbosity normal --logger trx --results-directory ./test-results/ /p:CI=true
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
 
-    - name: Test Reporter
-      uses: dorny/test-reporter@v1
-      if: success() || failure()
-      with:
-        name: xUnit Tests 
-        path: 'test-results/*.trx'
-        reporter: dotnet-trx
+      - name: Test
+        run: dotnet test --no-restore --verbosity normal --logger trx --results-directory ./test-results/ /p:CI=true tests/Application.UnitTests
+
+      - name: Test Reporter
+        uses: dorny/test-reporter@v1
+        if: success() || failure()
+        with:
+          name: NUnit Tests
+          path: "test-results/*.trx"
+          reporter: dotnet-trx
