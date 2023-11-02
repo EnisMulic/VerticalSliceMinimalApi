@@ -63,11 +63,7 @@ app.MapHealthChecks("/api/health", new HealthCheckOptions
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    // if environment is Development, then migrate the database
-    if (app.Environment.IsDevelopment())
-    {
-        db.Database.Migrate();
-    }
+    db.Database.Migrate();
 }
 
 // Enable middleware to serve generated Swagger as a JSON endpoint.

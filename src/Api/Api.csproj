@@ -7,6 +7,7 @@
     
     <AnalysisLevel>7-recommended</AnalysisLevel>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <UserSecretsId>8c645c6e-104f-44c0-8c0d-895ce52b5cf4</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'https' " />

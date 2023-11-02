@@ -1,0 +1,40 @@
+
+@hostname=localhost
+@port=44337
+@url=https://{{hostname}}:{{port}}
+
+@token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IkVuaXMiLCJzdWIiOiJFbmlzIiwianRpIjoiNDkwYmQ2NzMiLCJyb2xlIjoiQWRtaW5pc3RyYXRvciIsImF1ZCI6WyJodHRwOi8vbG9jYWxob3N0OjQ0OTg2IiwiaHR0cHM6Ly9sb2NhbGhvc3Q6NDQzMzciLCJodHRwOi8vbG9jYWxob3N0OjUxOTEiLCJodHRwczovL2xvY2FsaG9zdDo3MDc5Il0sIm5iZiI6MTY5ODk1NjY1NSwiZXhwIjoxNzA2OTA1NDU1LCJpYXQiOjE2OTg5NTY2NTYsImlzcyI6ImRvdG5ldC11c2VyLWp3dHMifQ.GkTKbLjQcJBOq1gNwMwL2jYqfG4BCNmn0uoRPcCXAms
+
+GET {{url}}/api/todos
+Authorization: Bearer {{token}}
+
+###
+
+POST https://localhost:44337/api/todo-lists
+Content-Type: application/json
+
+{
+  "title": "Tasks",
+  "colour": "#FFFFFF"
+}
+
+
+### 
+@todoId=1
+DELETE {{url}}/api/todos/{{todoId}}
+Authorization: Bearer {{token}}
+
+###
+@todoListId=1
+POST {{url}}/api/todo-lists/{{todoListId}}
+Content-Type: application/json
+
+{
+  "title": "string",
+  "note": "string",
+  "priorityLevel": 0,
+  "reminder": "2023-11-03T20:17:33.729Z"
+}
+
+###
+PATCH {{url}}/api/todos/{{todoId}}
