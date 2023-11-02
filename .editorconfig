@@ -365,6 +365,9 @@ dotnet_naming_style.s_camelcase.capitalization = camel_case
 
 # IDE0045: Convert to conditional expression
 dotnet_diagnostic.IDE0045.severity = none
+tab_width = 4
+indent_size = 4
+end_of_line = lf
 
 [*.cs]
 # Default severity for analyzer diagnostics with category 'Style' (escalated to build warnings)
@@ -382,3 +385,7 @@ dotnet_diagnostic.IDE0046.severity = silent
 
 # IDE1006: Naming Styles
 dotnet_diagnostic.IDE1006.severity = none
+csharp_style_namespace_declarations = block_scoped:silent
+csharp_style_prefer_method_group_conversion = true:silent
+csharp_style_prefer_top_level_statements = true:silent
+csharp_style_prefer_primary_constructors = true:suggestion

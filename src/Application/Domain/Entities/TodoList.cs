@@ -3,8 +3,12 @@ using Application.Domain.ValueObjects;
 
 namespace Application.Domain.Entities;
 
-#nullable disable
 
+
+
+
+
+#nullable disable
 public class TodoList : BaseAuditableEntity
 {
     public string Title { get; private set; }

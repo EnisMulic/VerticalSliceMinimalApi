@@ -1,12 +1,28 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-#nullable disable
 
+
+
+
+
+#nullable disable
 namespace Application.Infrastructure.Persistance.Migrations
 {
+
+
+
+
+
+
     /// <inheritdoc />
     public partial class Init : Migration
     {
+
+
+
+
+
+
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -59,6 +75,12 @@ namespace Application.Infrastructure.Persistance.Migrations
                 table: "TodoItems",
                 column: "TodoListId");
         }
+
+
+
+
+
+
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -9,6 +9,36 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.Common.Behaviours;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /// <summary>
 /// Logging long running (>3000ms) MediatR requests
 /// </summary>
