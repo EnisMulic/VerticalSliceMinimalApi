@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "Enis Mulic",
-  "classifications": ["Api"],
+  "classifications": ["Api", "Minimal Api", "Vertical Slice Architecture", "CQRS"],
   "identity": "VerticalSliceMinimalApi",
   "name": "Vertical Slice Minimal Api",
   "shortName": "vsma",
@@ -9,5 +9,59 @@
   "tags": {
     "language": "C#",
     "type": "project"
-  }
+  },
+  "symbols": {
+    "GitHost": {
+      "type": "parameter",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "Github",
+          "description": "Use Github"
+        },
+        {
+          "choice": "Azure",
+          "description": "Use Azure DevOps"
+        },
+        {
+          "choice": "None",
+          "description": ""
+        }
+      ],
+      "defaultValue": "Github",
+      "description": "The type of git host to use"
+    },
+    "UseGithub": {
+      "type": "computed",
+      "value": "(GitHost == \"Github\")"
+    },
+    "UseAzureDevOps": {
+      "type": "computed",
+      "value": "(GitHost == \"Azure\")"
+    },
+    "UseNoGitHost": {
+      "type": "computed",
+      "value": "(GitHost == \"None\")"
+    }
+  },
+  "sources": [
+    {
+      "source": "./",
+      "target": "./",
+      "modifiers": [
+        {
+          "condition": "(UseGithub)",
+          "exclude": [".azure/**"]
+        },
+        {
+          "condition": "(UseAzureDevOps)",
+          "exclude": [".github/**"]
+        },
+        {
+          "condition": "(UseNoGitHost)",
+          "exclude": [".azure/**", ".github/**"]
+        }
+      ]
+    }
+  ]
 }
