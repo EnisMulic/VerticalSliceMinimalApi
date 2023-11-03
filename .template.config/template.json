@@ -20,7 +20,7 @@
           "description": "Use Github"
         },
         {
-          "choice": "Azure",
+          "choice": "AzureDevOps",
           "description": "Use Azure DevOps"
         },
         {
@@ -37,7 +37,7 @@
     },
     "UseAzureDevOps": {
       "type": "computed",
-      "value": "(GitHost == \"Azure\")"
+      "value": "(GitHost == \"AzureDevOps\")"
     },
     "UseNoGitHost": {
       "type": "computed",
@@ -51,7 +51,7 @@
       "modifiers": [
         {
           "condition": "(UseGithub)",
-          "exclude": [".azure/**"]
+          "exclude": [".azuredevops/**"]
         },
         {
           "condition": "(UseAzureDevOps)",
@@ -59,7 +59,7 @@
         },
         {
           "condition": "(UseNoGitHost)",
-          "exclude": [".azure/**", ".github/**"]
+          "exclude": [".azuredevops/**", ".github/**"]
         }
       ]
     }
