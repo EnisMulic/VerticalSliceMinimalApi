@@ -26,6 +26,7 @@ dotnet new vsma --name ProjectName
 ```
 dotnet new vsma --name [ProjectName]
     [-gh|--git-host [Github|AzureDevOps|None]]
+    [-db|--database [MsSql|PostgreSql|None]]
 ```
 
 ### Options
@@ -35,6 +36,8 @@ dotnet new vsma --name [ProjectName]
 
 * `-gh|--git-host [Github|AzureDevOps|None]`  
   Choose the platform you will host your projects git repository, this will give you a base CI workflow, pull request template, and anything specific to the platform that might be of use. The default value is `None`.
+* `-db|--database [MsSql|PostgreSql|None]`   
+  Choose what database to use for your project. The default is `None`
 
 ## How to Run
 

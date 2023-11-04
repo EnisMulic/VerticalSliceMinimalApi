@@ -42,6 +42,38 @@
     "UseNoGitHost": {
       "type": "computed",
       "value": "(GitHost == \"None\")"
+    },
+    "Database": {
+      "type": "parameter",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "MSSql",
+          "description": "Use Microsoft SQL or Azure SQL"
+        },
+        {
+          "choice": "PostgreSql",
+          "description": "Use PostgreSql"
+        },
+        {
+          "choice": "None",
+          "description": ""
+        }
+      ],
+      "defaultValue": "None",
+      "description": "The type of database to use"
+    },
+    "UseMSSql": {
+      "type": "computed",
+      "value": "(Database == \"MSSql\")"
+    },
+    "UsePostgreSql": {
+      "type": "computed",
+      "value": "(Database == \"PostgreSql\")"
+    },
+    "UseDatabase": {
+      "type": "computed",
+      "value": "(Database != \"None\")"
     }
   },
   "sources": [
@@ -60,6 +92,12 @@
         {
           "condition": "(UseNoGitHost)",
           "exclude": [".azuredevops/**", ".github/**"]
+        },
+        {
+          "condition": "(!UseDatabase)",
+          "exclude": [
+            "src/Application/Infrastructure/Persistance/**"
+          ]
         }
       ]
     }

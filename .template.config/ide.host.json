@@ -12,6 +12,16 @@
         "text": "Select the git respository host"
       },
       "isVisible": true
+    },
+    {
+      "id": "Database",
+      "name": {
+        "text": "Database"
+      },
+      "description": {
+        "text": "Select the database"
+      },
+      "isVisible": true
     }
   ]
 }
