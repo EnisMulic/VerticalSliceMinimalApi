@@ -1,10 +1,14 @@
 ﻿using Application.Common.Interfaces;
+#if UseDatabase
 using Application.Infrastructure.Persistance;
 using Application.Infrastructure.Persistance.Interceptors;
-using Application.Infrastructure.Services;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
+
+#endif
+using Application.Infrastructure.Services;
+
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -14,6 +18,9 @@ public static class ConfigureInfrastructureServices
 {
     public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddTransient<IDateTime, DateTimeService>();
+
+#if UseDatabase
         services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
         services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
         services.AddScoped<ISaveChangesInterceptor, SoftDeleteInterceptor>();
@@ -22,15 +29,18 @@ public static class ConfigureInfrastructureServices
         {
             options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
 
+#if UseMSSql
             options.UseSqlServer(configuration.GetConnectionString("Default"),
                 builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
+#elif UsePostgreSql
+            options.UseNpgsql(configuration.GetConnectionString("Default"),
+                builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
+#endif
         });
-
-        services.AddTransient<IDateTime, DateTimeService>();
 
         services.AddHealthChecks()
             .AddDbContextCheck<ApplicationDbContext>("Database");
-
+#endif
 
         return services;
     }

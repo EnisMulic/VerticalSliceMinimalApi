@@ -3,6 +3,10 @@
     "GitHost": {
       "longName": "git-host",
       "shortName": "gh"
+    },
+    "Database": {
+      "longName": "database",
+      "shortName": "db"
     }
   }
 }
