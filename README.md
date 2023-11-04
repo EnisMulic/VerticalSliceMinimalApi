@@ -22,6 +22,20 @@ dotnet new install ./VerticalSliceMinimalApi
 dotnet new vsma --name ProjectName 
 ```
 
+## Synopsis
+```
+dotnet new vsma --name [ProjectName]
+    [-gh|--git-host [Github|AzureDevOps|None]]
+```
+
+### Options
+
+* `--name [ProjectName]`  
+  Specify the name of the project you are creating, this will replace all occurrences of `ProjectName` in the template with the name you pass in.
+
+* `-gh|--git-host [Github|AzureDevOps|None]`  
+  Choose the platform you will host your projects git repository, this will give you a base CI workflow, pull request template, and anything specific to the platform that might be of use. The default value is `None`.
+
 ## How to Run
 
 To start the app run:
