@@ -28,7 +28,7 @@
           "description": ""
         }
       ],
-      "defaultValue": "Github",
+      "defaultValue": "None",
       "description": "The type of git host to use"
     },
     "UseGithub": {
