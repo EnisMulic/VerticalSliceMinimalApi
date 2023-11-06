@@ -2,7 +2,7 @@
 
 [![Build](https://github.com/EnisMulic/VerticalSliceMinimalApi/actions/workflows/ci.yml/badge.svg)](https://github.com/EnisMulic/VerticalSliceMinimalApi/actions/workflows/ci.yml)
 
-## Getting Started 
+## Getting Started
 
 1. Clone the repository
 
@@ -19,10 +19,11 @@ dotnet new install ./VerticalSliceMinimalApi
 3. Use the installed template to create your API
 
 ```sh
-dotnet new vsma --name ProjectName 
+dotnet new vsma --name ProjectName
 ```
 
 ## Synopsis
+
 ```
 dotnet new vsma --name [ProjectName]
     [-gh|--git-host [Github|AzureDevOps|None]]
@@ -31,17 +32,18 @@ dotnet new vsma --name [ProjectName]
 
 ### Options
 
-* `--name [ProjectName]`  
+- `--name [ProjectName]`  
   Specify the name of the project you are creating, this will replace all occurrences of `ProjectName` in the template with the name you pass in.
 
-* `-gh|--git-host [Github|AzureDevOps|None]`  
+- `-gh|--git-host [Github|AzureDevOps|None]`  
   Choose the platform you will host your projects git repository, this will give you a base CI workflow, pull request template, and anything specific to the platform that might be of use. The default value is `None`.
-* `-db|--database [MsSql|PostgreSql|None]`   
+- `-db|--database [MsSql|PostgreSql|None]`  
   Choose what database to use for your project. The default is `None`
 
 ## How to Run
 
 To start the app run:
+
 ```sh
 dotnet run --project src/Api
 ```

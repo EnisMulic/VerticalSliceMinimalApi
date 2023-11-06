@@ -29,7 +29,7 @@ public static class ConfigureInfrastructureServices
         {
             options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
 
-#if UseMSSql
+#if UseMsSql
             options.UseSqlServer(configuration.GetConnectionString("Default"),
                 builder => builder.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName));
 #elif UsePostgreSql
