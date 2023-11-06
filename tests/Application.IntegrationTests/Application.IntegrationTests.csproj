@@ -24,7 +24,11 @@
     <PackageReference Include="NUnit" Version="3.13.3" />
     <PackageReference Include="Respawn" Version="6.1.0" />
     <PackageReference Include="Testcontainers" Version="3.5.0" />
+    <!-- #if (UseMsSql) -->
     <PackageReference Include="Testcontainers.MsSql" Version="3.5.0" />
+    <!-- #else -->
+    <PackageReference Include="Testcontainers.PostgreSql" Version="3.5.0" />
+    <!-- #endif -->
     <PackageReference Include="coverlet.collector" Version="3.2.0">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
