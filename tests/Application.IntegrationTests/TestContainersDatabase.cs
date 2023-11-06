@@ -7,22 +7,37 @@ using Microsoft.EntityFrameworkCore;
 
 using Respawn;
 
+#if UseMsSql
 using Testcontainers.MsSql;
+#else
+using Testcontainers.PostgreSql;
+#endif
 
 namespace Application.IntegrationTests;
 
 public class TestContainersDatabase : ITestDatabase
 {
+#if UseMsSql
     private readonly MsSqlContainer _container;
+#else
+    private readonly PostgreSqlContainer _container;
+#endif
+
     private DbConnection _connection = null!;
     private string _connectionString = null!;
     private Respawner _respawner = null!;
 
     public TestContainersDatabase()
     {
+#if UseMsSql
         _container = new MsSqlBuilder()
             .WithAutoRemove(true)
             .Build();
+#else
+        _container = new PostgreSqlBuilder()
+            .WithAutoRemove(true)
+            .Build();
+#endif
     }
 
     public async Task InitialiseAsync()
