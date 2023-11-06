@@ -1,7 +1,12 @@
 {
   "$schema": "http://json.schemastore.org/template",
   "author": "Enis Mulic",
-  "classifications": ["Api", "Minimal Api", "Vertical Slice Architecture", "CQRS"],
+  "classifications": [
+    "Api",
+    "Minimal Api",
+    "Vertical Slice Architecture",
+    "CQRS"
+  ],
   "identity": "VerticalSliceMinimalApi",
   "name": "Vertical Slice Minimal Api",
   "shortName": "vsma",
@@ -48,7 +53,7 @@
       "datatype": "choice",
       "choices": [
         {
-          "choice": "MSSql",
+          "choice": "MsSql",
           "description": "Use Microsoft SQL or Azure SQL"
         },
         {
@@ -63,9 +68,9 @@
       "defaultValue": "None",
       "description": "The type of database to use"
     },
-    "UseMSSql": {
+    "UseMsSql": {
       "type": "computed",
-      "value": "(Database == \"MSSql\")"
+      "value": "(Database == \"MsSql\")"
     },
     "UsePostgreSql": {
       "type": "computed",
@@ -96,8 +101,31 @@
         {
           "condition": "(!UseDatabase)",
           "exclude": [
-            "src/Application/Infrastructure/Persistance/**"
+            "src/Application/Infrastructure/Persistance/**",
+            "appsettings.*.json"
           ]
+        },
+        {
+          "condition": "(UseMsSql)",
+          "exclude": [
+            "src/Api/appsettings.PostgreSql.json",
+            "docker-compose.postgresql.yml"
+          ],
+          "rename": {
+            "appsettings.MsSql.json": "appsettings.Development.json",
+            "docker-compose.mssql.yml": "docker-compose.yml"
+          }
+        },
+        {
+          "condition": "(UsePostgreSql)",
+          "exclude": [
+            "src/Api/appsettings.MsSql.json",
+            "docker-compose.mssql.yml"
+          ],
+          "rename": {
+            "appsettings.PostgreSql.json": "appsettings.Development.json",
+            "docker-compose.postgresql.yml": "docker-compose.yml"
+          }
         }
       ]
     }
