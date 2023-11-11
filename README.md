@@ -48,7 +48,7 @@ Configure the application using `appsettings.json`, `appsettings.Development.jso
 dotnet user-secrets init --project src/Api
 ```
 
-# Define Constants
+### Define Constants
 
 To test/develop the template with specific options add a `<DefineConstants>` block to `Directory.Build.props` file.
 
@@ -71,6 +71,31 @@ To start the app run:
 
 ```sh
 dotnet run --project src/Api
+```
+
+## Database
+
+The template uses MsSql migrations by default, so if you select PostgreSql as your database you will need to remove the `Application/Infrastructure/Persistance/Migrations` folder and create a new migration script.
+
+When you run the application the database will be created (if it doesn't exist) and the migrations will be applied.
+
+To run the migrations you will need to add the following flags to your ef commands.
+
+* `-p | --project src/Application`
+* `-s | --startup-project src/Api`
+* `-o | --output-dir Infrastructure/Persistance/Migrations`
+
+For example, to add a new migration:
+
+```sh
+dotnet ef migrations add \
+  -p src/Application \
+  -s src/Api \
+  -o Infrastructure/Persistance/Migrations "MigrationName"
+```
+
+```sh
+dotnet ef migrations add -p src/Application -s src/Api -o Infrastructure/Persistance/Migrations "MigrationName"
 ```
 
 ## Auth
