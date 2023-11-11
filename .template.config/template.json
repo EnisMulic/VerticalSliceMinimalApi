@@ -86,7 +86,7 @@
       "source": "./",
       "target": "./",
       "rename": {
-        "README.template.md": "README.md"
+        "README.output.md": "README.md"
       },
       "modifiers": [
         {
