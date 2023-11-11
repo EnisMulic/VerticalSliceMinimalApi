@@ -40,20 +40,37 @@ dotnet new vsma --name [ProjectName]
 - `-db|--database [MsSql|PostgreSql|None]`  
   Choose what database to use for your project. The default is `None`
 
-## How to Run
-
-To start the app run:
-
-```sh
-dotnet run --project src/Api
-```
-
 ## Configuration
 
 Configure the application using `appsettings.json`, `appsettings.Development.json` or [dotnet secrets](https://learn.microsoft.com/en-us/aspnet/core/security/app-secrets?view=aspnetcore-7.0&tabs=windows)
 
 ```sh
 dotnet user-secrets init --project src/Api
+```
+
+# Define Constants
+
+To test/develop the template with specific options add a `<DefineConstants>` block to `Directory.Build.props` file.
+
+```diff
+<PropertyGroup>
+  <TargetFramework>net7.0</TargetFramework>
+  <Nullable>enable</Nullable>
+  <ImplicitUsings>enable</ImplicitUsings>
+  
+  <AnalysisLevel>7-recommended</AnalysisLevel>
+  <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+
++ <DefineConstants>UseDatabase;UseMsSql</DefineConstants>
+</PropertyGroup>
+```
+
+## How to Run
+
+To start the app run:
+
+```sh
+dotnet run --project src/Api
 ```
 
 ## Auth
