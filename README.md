@@ -1,4 +1,4 @@
-# Vertical Slice Minimal Api
+# Vertical Slice Minimal Api Template
 
 [![Build](https://github.com/EnisMulic/VerticalSliceMinimalApi/actions/workflows/ci.yml/badge.svg)](https://github.com/EnisMulic/VerticalSliceMinimalApi/actions/workflows/ci.yml)
 

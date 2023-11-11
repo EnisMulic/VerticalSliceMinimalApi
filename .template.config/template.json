@@ -85,6 +85,9 @@
     {
       "source": "./",
       "target": "./",
+      "rename": {
+        "README.template.md": "README.md"
+      },
       "modifiers": [
         {
           "condition": "(UseGithub)",
@@ -102,7 +105,8 @@
           "condition": "(!UseDatabase)",
           "exclude": [
             "src/Application/Infrastructure/Persistance/**",
-            "appsettings.*.json"
+            "appsettings.*.json",
+            "docker-compose.*.yml"
           ]
         },
         {
