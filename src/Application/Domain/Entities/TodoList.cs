@@ -3,11 +3,6 @@ using Application.Domain.ValueObjects;
 
 namespace Application.Domain.Entities;
 
-
-
-
-
-
 #nullable disable
 public class TodoList : BaseAuditableEntity
 {

@@ -4,12 +4,6 @@ using Application.Domain.Enums;
 
 namespace Application.Features.Todos;
 
-
-
-
-
-
-
 #nullable disable
 public class TodoListResponse : IMapFrom<TodoList>
 {
