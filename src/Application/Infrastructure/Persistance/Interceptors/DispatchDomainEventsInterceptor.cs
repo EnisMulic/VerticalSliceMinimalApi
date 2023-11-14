@@ -47,10 +47,10 @@ public class DispatchDomainEventsInterceptor : SaveChangesInterceptor
         // multiple transactions. You will need to handle eventual consistency and
         // compensatory actions in case of failures.
         var domainEvents = context.ChangeTracker
-.Entries<IHasDomainEvent>()
-.Select(i => i.Entity.DomainEvents)
-.SelectMany(i => i)
-.Where(i => !i.IsPublished);
+            .Entries<IHasDomainEvent>()
+            .Select(i => i.Entity.DomainEvents)
+            .SelectMany(i => i)
+            .Where(i => !i.IsPublished);
 
         foreach (var domainEvent in domainEvents)
         {
