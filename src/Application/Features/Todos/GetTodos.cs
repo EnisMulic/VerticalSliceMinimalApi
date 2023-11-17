@@ -25,7 +25,7 @@ public class GetTodosModule : ICarterModule
             return response;
         })
         .RequireAuthorization()
-        .Produces<int>(StatusCodes.Status201Created)
+        .Produces<List<TodoListResponse>>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status400BadRequest)
         .WithOpenApi(operation => new(operation)
         {

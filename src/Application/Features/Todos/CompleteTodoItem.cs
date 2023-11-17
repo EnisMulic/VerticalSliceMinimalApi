@@ -49,13 +49,11 @@ public class CompleteTodoCommandHandler : IRequestHandler<CompleteTodoCommand, U
         var item = await _context.TodoItems.FindAsync(new object?[] { request.Id }, cancellationToken: cancellationToken)
             ?? throw new NotFoundException(nameof(TodoItem), request.Id);
 
-        //if (!item.Done)
-        //{
-
-        //}
-
-        item.Complete();
-        await _context.SaveChangesAsync(cancellationToken);
+        if (!item.Done)
+        {
+            item.Complete();
+            await _context.SaveChangesAsync(cancellationToken);
+        }
 
         return Unit.Value;
     }
