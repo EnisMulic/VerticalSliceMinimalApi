@@ -7,9 +7,6 @@ namespace Api.Options;
 
 public class SwaggerConfigurationOptions : IConfigureOptions<SwaggerGenOptions>
 {
-    public SwaggerConfigurationOptions()
-    {
-    }
 
     public void Configure(SwaggerGenOptions options)
     {
@@ -36,31 +33,5 @@ public class SwaggerConfigurationOptions : IConfigureOptions<SwaggerGenOptions>
                 Array.Empty<string>()
             }
         });
-
-        //options.AddSecurityDefinition("aad-jwt", new OpenApiSecurityScheme
-        //{
-        //    Type = SecuritySchemeType.OAuth2,
-        //    Flows = new OpenApiOAuthFlows
-        //    {
-        //        AuthorizationCode = new OpenApiOAuthFlow
-        //        {
-        //        }
-        //    }
-        //});
-        //options.AddSecurityRequirement(new OpenApiSecurityRequirement
-        //{
-        //    {
-        //        new OpenApiSecurityScheme
-        //        {
-        //            Reference = new OpenApiReference
-        //            {
-        //                Type = ReferenceType.SecurityScheme,
-        //                Id = "aad-jwt"
-        //            },
-        //            UnresolvedReference = true
-        //        },
-        //        Array.Empty<string>()
-        //    }
-        //});
     }
 }

@@ -23,6 +23,9 @@
     
     <PackageReference Include="Carter" Version="7.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.13" />
+    <!-- #if (UseEntra) -->
+    <PackageReference Include="Microsoft.Identity.Web" Version="2.15.3" />
+    <!-- #endif -->
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services\" />

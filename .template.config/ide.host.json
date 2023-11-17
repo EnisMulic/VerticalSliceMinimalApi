@@ -9,7 +9,7 @@
         "text": "Git Repository Host"
       },
       "description": {
-        "text": "Select the git respository host"
+        "text": "Select the git repository host"
       },
       "isVisible": true
     },
@@ -20,6 +20,16 @@
       },
       "description": {
         "text": "Select the database"
+      },
+      "isVisible": true
+    },
+    {
+      "id": "Auth",
+      "name": {
+        "text": "Auth"
+      },
+      "description": {
+        "text": "Select the auth provider"
       },
       "isVisible": true
     }
