@@ -79,6 +79,26 @@
     "UseDatabase": {
       "type": "computed",
       "value": "(Database != \"None\")"
+    },
+    "Auth": {
+      "type": "parameter",
+      "datatype": "choice",
+      "choices": [
+        {
+          "choice": "Entra",
+          "description": "Use Microsoft Entra as the auth provider"
+        },
+        {
+          "choice": "None",
+          "description": ""
+        }
+      ],
+      "defaultValue": "None",
+      "description": "The type of auth provider to use"
+    },
+    "UseEntra": {
+      "type": "computed",
+      "value": "(Auth == \"Entra\")"
     }
   },
   "sources": [
@@ -130,6 +150,10 @@
             "appsettings.PostgreSql.json": "appsettings.Development.json",
             "docker-compose.postgresql.yml": "docker-compose.yml"
           }
+        },
+        {
+          "condition": "(!UseEntra)",
+          "exclude": ["**MicrosoftEntra**", "**Scopes**"]
         }
       ]
     }

@@ -39,14 +39,19 @@ builder.Services.AddCors(options => options.AddDefaultPolicy(
         .AllowAnyHeader()
         .AllowAnyMethod()));
 
-
-builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, SwaggerConfigurationOptions>();
-
 builder.Services.AddAndConfigureProblemDetails();
 
-builder.Services.AddAuthorization();
-builder.Services.AddAuthentication().AddJwtBearer();
 
+
+#if UseEntra
+builder.Services.AddMicrosoftEntraAuth(builder.Configuration);
+#else
+builder.Services.AddTransient<IConfigureOptions<SwaggerGenOptions>, SwaggerConfigurationOptions>();
+builder.Services.AddAuthentication()
+    .AddJwtBearer();
+#endif
+
+builder.Services.AddAuthorization();
 
 builder.Services.AddApiServices();
 builder.Services.AddCommonServices();
@@ -66,6 +71,8 @@ using (var scope = app.Services.CreateScope())
     db.Database.Migrate();
 }
 
+var microsoftIdentityOptions = app.Services.GetService<IOptions<MicrosoftEntraOptions>>()?.Value;
+
 // Enable middleware to serve generated Swagger as a JSON endpoint.
 app.UseSwagger();
 
@@ -74,6 +81,10 @@ app.UseSwaggerUI(options =>
 {
     options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
     options.RoutePrefix = string.Empty;
+#if UseEntra
+    options.OAuthClientId(microsoftIdentityOptions?.ClientId);
+    options.OAuthUsePkce();
+#endif
 });
 
 app.UseCors();

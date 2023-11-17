@@ -28,6 +28,7 @@ dotnet new vsma --name ProjectName
 dotnet new vsma --name [ProjectName]
     [-gh|--git-host [Github|AzureDevOps|None]]
     [-db|--database [MsSql|PostgreSql|None]]
+    [-oa|--auth [Entra|None]]
 ```
 
 ### Options
@@ -39,6 +40,9 @@ dotnet new vsma --name [ProjectName]
   Choose the platform you will host your projects git repository, this will give you a base CI workflow, pull request template, and anything specific to the platform that might be of use. The default value is `None`.
 - `-db|--database [MsSql|PostgreSql|None]`  
   Choose what database to use for your project. The default is `None`
+- `-oa|--auth [Entra|None]`
+  Choose a auth provider to use for your project.
+  The default is `None` which will configure a JwtBearer Auth that you can use with `dotnet user-jwts`.
 
 ## Configuration
 
@@ -57,7 +61,7 @@ To test/develop the template with specific options add a `<DefineConstants>` blo
   <TargetFramework>net7.0</TargetFramework>
   <Nullable>enable</Nullable>
   <ImplicitUsings>enable</ImplicitUsings>
-  
+
   <AnalysisLevel>7-recommended</AnalysisLevel>
   <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
 
@@ -81,9 +85,9 @@ When you run the application the database will be created (if it doesn't exist) 
 
 To run the migrations you will need to add the following flags to your ef commands.
 
-* `-p | --project src/Application`
-* `-s | --startup-project src/Api`
-* `-o | --output-dir Infrastructure/Persistance/Migrations`
+- `-p | --project src/Application`
+- `-s | --startup-project src/Api`
+- `-o | --output-dir Infrastructure/Persistance/Migrations`
 
 For example, to add a new migration:
 
