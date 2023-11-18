@@ -12,7 +12,7 @@ steps:
     displayName: Install dotnet
     inputs:
       packageType: "sdk"
-      version: "7.0.x"
+      useGlobalJson: true
 
   - task: DotNetCoreCLI@2
     displayName: Lint
@@ -35,4 +35,4 @@ steps:
         tests/Application.UnitTests
         --no-restore
         --verbosity normal
-        --logger trx        
+        --logger trx
