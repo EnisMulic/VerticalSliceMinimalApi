@@ -1,4 +1,6 @@
-﻿using Application.Authorization;
+﻿using System.Collections.Generic;
+
+using Application.Authorization;
 using Application.Common.Exceptions;
 using Application.Common.Models;
 using Application.Domain.Entities;
@@ -51,7 +53,7 @@ public class DeleteTodoItemCommandHandler : IRequestHandler<DeleteTodoItemComman
         var item = await _context.TodoItems.FindAsync(new object?[] { request.Id }, cancellationToken: cancellationToken)
             ?? throw new NotFoundException(nameof(TodoItem), request.Id);
 
-        item.Delete();
+        _context.TodoItems.Remove(item);
         await _context.SaveChangesAsync(cancellationToken: cancellationToken);
 
         return Unit.Value;

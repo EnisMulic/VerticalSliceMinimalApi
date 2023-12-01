@@ -4,11 +4,12 @@ using Application.Domain.ValueObjects;
 namespace Application.Domain.Entities;
 
 #nullable disable
-public class TodoList : BaseAuditableEntity
+public class TodoList : BaseAuditableEntity, ISoftDelete
 {
     public string Title { get; private set; }
     public Colour Colour { get; private set; }
     public IList<TodoItem> Items { get; private set; } = new List<TodoItem>();
+    public bool IsDeleted { get; set; }
 
     private TodoList() { }
 
@@ -27,5 +28,10 @@ public class TodoList : BaseAuditableEntity
     public void AddTodoItem(TodoItem item)
     {
         Items.Add(item);
+    }
+
+    public void Delete()
+    {
+        IsDeleted = true;
     }
 }
