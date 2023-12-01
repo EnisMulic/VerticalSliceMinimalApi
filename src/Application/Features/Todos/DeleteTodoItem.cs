@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-using Application.Authorization;
+﻿using Application.Authorization;
 using Application.Common.Exceptions;
 using Application.Common.Models;
 using Application.Domain.Entities;
