@@ -32,9 +32,6 @@ public class SoftDeleteInterceptor : SaveChangesInterceptor
             return;
         }
 
-        // TODO: Add logic for marking entities owned by the entity we are trying to delete as unchanged,
-        // otherwise attempting to soft delete entities will throw an exception because ef core will perform
-        // delete on those entities and try to update our "main" entity with NULL values in place of the owned ones
         foreach (var entry in context.ChangeTracker.Entries<ISoftDelete>())
         {
             if (entry.State == EntityState.Deleted)
