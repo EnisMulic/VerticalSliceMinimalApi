@@ -105,6 +105,7 @@
     {
       "source": "./",
       "target": "./",
+      "exclude": ["*.nuspec", ".github/workflows/nuget.yml"],
       "rename": {
         "README.output.md": "README.md"
       },

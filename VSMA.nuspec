@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+
+    <id>VerticalSliceMinimalApi</id>
+    <version>7.0.0</version>
+    <title>Vertical Slice Minimal Api</title>
+    <authors>EnisMulic</authors>
+    <description>Vertical Slice Minimal Api Template for .NET 7.</description>
+    <summary>
+      A Vertical Slice Minimal Api Template for creating apps with ASP.NET Core.
+    </summary>
+
+    <projectUrl>https://github.com/EnisMulic/VerticalSliceMinimalApi</projectUrl>
+    <repository type="git" url="https://github.com/EnisMulic/VerticalSliceMinimalApi.git" branch="main" />
+
+    <license type="expression">MIT</license>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <tags>vertical-slice minimal-api project template csharp dotnet</tags>
+    <readme>README.md</readme>
+
+    <packageTypes>
+      <packageType name="Template" />
+    </packageTypes>
+
+  </metadata>
+
+  <files>
+    <file src="README.md" />
+  </files>
+
+</package>
