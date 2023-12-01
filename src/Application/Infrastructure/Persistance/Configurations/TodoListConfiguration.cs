@@ -9,11 +9,17 @@ public class TodoListConfiguration : IEntityTypeConfiguration<TodoList>
 {
     public void Configure(EntityTypeBuilder<TodoList> builder)
     {
+        builder.HasQueryFilter(i => !i.IsDeleted);
+
         builder.Property(t => t.Title)
             .HasMaxLength(200)
             .IsRequired();
 
         builder
             .OwnsOne(b => b.Colour);
+
+        builder.HasMany<TodoItem>(i => i.Items)
+            .WithOne(i => i.TodoList)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }
