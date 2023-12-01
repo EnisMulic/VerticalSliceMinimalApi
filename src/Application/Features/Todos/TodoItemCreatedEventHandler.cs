@@ -8,11 +8,11 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.Features.Todos;
 
-public class TodoItemCreatedEventHandler : INotificationHandler<TodoItemCreatedEvent>
+public class TodoItemCreatedHandler : INotificationHandler<TodoItemCreatedEvent>
 {
-    private readonly ILogger<TodoItemCreatedEventHandler> _logger;
+    private readonly ILogger<TodoItemCreatedHandler> _logger;
 
-    public TodoItemCreatedEventHandler(ILogger<TodoItemCreatedEventHandler> logger)
+    public TodoItemCreatedHandler(ILogger<TodoItemCreatedHandler> logger)
     {
         _logger = logger;
     }

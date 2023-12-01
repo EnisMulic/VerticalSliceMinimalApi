@@ -7,11 +7,11 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.Features.Todos;
 
-public class TodoItemCompletedEventHandler : INotificationHandler<TodoItemCompletedEvent>
+public class TodoItemCompletedHandler : INotificationHandler<TodoItemCompletedEvent>
 {
-    private readonly ILogger<TodoItemCompletedEventHandler> _logger;
+    private readonly ILogger<TodoItemCompletedHandler> _logger;
 
-    public TodoItemCompletedEventHandler(ILogger<TodoItemCompletedEventHandler> logger)
+    public TodoItemCompletedHandler(ILogger<TodoItemCompletedHandler> logger)
     {
         _logger = logger;
     }
