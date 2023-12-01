@@ -4,6 +4,14 @@
 
 ## Getting Started
 
+Install the template from Nuget Gallery
+
+```
+dotnet new install VerticalSliceMinimalApi::7.0.0
+```
+
+## Local Development
+
 1. Clone the repository
 
 ```sh
