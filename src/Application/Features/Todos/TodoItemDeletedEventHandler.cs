@@ -7,11 +7,11 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.Features.Todos;
 
-public class TodoItemDeletedEventHandler : INotificationHandler<TodoItemDeletedEvent>
+public class TodoItemDeletedHandler : INotificationHandler<TodoItemDeletedEvent>
 {
-    private readonly ILogger<TodoItemDeletedEventHandler> _logger;
+    private readonly ILogger<TodoItemDeletedHandler> _logger;
 
-    public TodoItemDeletedEventHandler(ILogger<TodoItemDeletedEventHandler> logger)
+    public TodoItemDeletedHandler(ILogger<TodoItemDeletedHandler> logger)
     {
         _logger = logger;
     }
