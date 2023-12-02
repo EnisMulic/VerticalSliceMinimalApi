@@ -27,6 +27,7 @@
 
   <files>
     <file src="README.md" />
+    <file src=".\**" target="content" exclude="**\bin\**;**\obj\**;.\.vs\**;.\.git\**;.\.github\workflows\nuget.yml;.\.github\ISSUE_TEMPLATE\**;.\LICENSE;.\README.md;" />
   </files>
 
 </package>
