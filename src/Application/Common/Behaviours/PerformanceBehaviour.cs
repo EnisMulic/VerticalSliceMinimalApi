@@ -14,21 +14,13 @@ namespace Application.Common.Behaviours;
 /// </summary>
 /// <typeparam name="TRequest"></typeparam>
 /// <typeparam name="TResponse"></typeparam>
-public class PerformanceBehaviour<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
+public class PerformanceBehaviour<TRequest, TResponse>(
+    ILogger<TRequest> logger,
+    ICurrentUserService currentUserService) : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
 {
-    private readonly Stopwatch _timer;
-    private readonly ILogger<TRequest> _logger;
-    private readonly ICurrentUserService _currentUserService;
-
-    public PerformanceBehaviour(
-        ILogger<TRequest> logger,
-        ICurrentUserService currentUserService)
-    {
-        _timer = new Stopwatch();
-
-        _logger = logger;
-        _currentUserService = currentUserService;
-    }
+    private readonly Stopwatch _timer = new();
+    private readonly ILogger<TRequest> _logger = logger;
+    private readonly ICurrentUserService _currentUserService = currentUserService;
 
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {

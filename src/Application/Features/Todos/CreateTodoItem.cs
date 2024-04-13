@@ -57,18 +57,13 @@ public class CreeateTodoItemCommandValidator : AbstractValidator<CreeateTodoItem
     }
 }
 
-public class CreeateTodoItemCommandHandler : IRequestHandler<CreeateTodoItemCommand, int>
+public class CreeateTodoItemCommandHandler(ApplicationDbContext context) : IRequestHandler<CreeateTodoItemCommand, int>
 {
-    private readonly ApplicationDbContext _context;
-
-    public CreeateTodoItemCommandHandler(ApplicationDbContext context)
-    {
-        _context = context;
-    }
+    private readonly ApplicationDbContext _context = context;
 
     public async Task<int> Handle(CreeateTodoItemCommand request, CancellationToken cancellationToken)
     {
-        var todoList = await _context.TodoLists.FindAsync(new object?[] { request.Id }, cancellationToken)
+        var todoList = await _context.TodoLists.FindAsync([request.Id], cancellationToken)
             ?? throw new NotFoundException(nameof(TodoList), request.Id);
 
         var todoItem = TodoItem.Create(request.Item.Title,

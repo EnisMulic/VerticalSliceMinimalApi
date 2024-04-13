@@ -12,14 +12,9 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace Application.IntegrationTests;
 
-public class TestingWebApplicationFactory : WebApplicationFactory<Program>
+public class TestingWebApplicationFactory(DbConnection connection) : WebApplicationFactory<Program>
 {
-    private readonly DbConnection _connection;
-
-    public TestingWebApplicationFactory(DbConnection connection)
-    {
-        _connection = connection;
-    }
+    private readonly DbConnection _connection = connection;
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0053:Use expression body for lambda expression", Justification = "<Pending>")]
     protected override void ConfigureWebHost(IWebHostBuilder builder)

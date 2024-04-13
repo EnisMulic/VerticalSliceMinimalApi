@@ -8,30 +8,30 @@
    
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
-    <PackageReference Include="Carter" Version="7.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.13" />
+    <PackageReference Include="Carter" Version="8.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.2" />
     
     <!-- #if (UseDatabase) -->
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.13" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.13">
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.2">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.13" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.13">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.2">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     
-    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="7.0.13" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore" Version="8.0.2" />
     
     <!-- #if (UseMsSql) -->
-    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="7.0.13" />
-    <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="7.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Diagnostics.HealthChecks" Version="8.0.2" />
+    <PackageReference Include="AspNetCore.HealthChecks.SqlServer" Version="8.0.2" />
     
     <!-- #elif (UsePostgreSql) -->
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.11" />
-    <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="7.1.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.2" />
+    <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="8.0.1" />
     <!-- #endif -->
     <!-- #endif -->
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />

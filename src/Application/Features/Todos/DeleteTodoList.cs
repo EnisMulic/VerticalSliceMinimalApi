@@ -37,14 +37,9 @@ public class DeleteTodoListModule : ICarterModule
 
 public record DeleteTodoListCommand(int Id) : IRequest;
 
-public class DeleteTodoListCommandHandler : IRequestHandler<DeleteTodoListCommand, Unit>
+public class DeleteTodoListCommandHandler(ApplicationDbContext context) : IRequestHandler<DeleteTodoListCommand, Unit>
 {
-    private readonly ApplicationDbContext _context;
-
-    public DeleteTodoListCommandHandler(ApplicationDbContext context)
-    {
-        _context = context;
-    }
+    private readonly ApplicationDbContext _context = context;
 
     public async Task<Unit> Handle(DeleteTodoListCommand request, CancellationToken cancellationToken)
     {

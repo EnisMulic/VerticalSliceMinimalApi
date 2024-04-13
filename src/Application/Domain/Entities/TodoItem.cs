@@ -15,7 +15,7 @@ public class TodoItem : BaseAuditableEntity, IHasDomainEvent, ISoftDelete
     public int TodoListId { get; private set; }
     public TodoList TodoList { get; private set; } = null!;
 
-    public List<DomainEvent> DomainEvents { get; private set; } = new List<DomainEvent>();
+    public List<DomainEvent> DomainEvents { get; private set; } = [];
 
     private TodoItem() { }
 

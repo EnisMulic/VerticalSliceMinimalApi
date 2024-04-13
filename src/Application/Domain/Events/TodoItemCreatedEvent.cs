@@ -3,11 +3,7 @@ using Application.Domain.Entities;
 
 namespace Application.Domain.Events;
 
-public class TodoItemCreatedEvent : DomainEvent
+public class TodoItemCreatedEvent(TodoItem item) : DomainEvent
 {
-    public TodoItem Item { get; }
-    public TodoItemCreatedEvent(TodoItem item)
-    {
-        Item = item;
-    }
+    public TodoItem Item { get; } = item;
 }

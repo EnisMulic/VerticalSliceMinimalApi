@@ -2,11 +2,7 @@
 using Application.Domain.Entities;
 
 namespace Application.Domain.Events;
-public class TodoItemDeletedEvent : DomainEvent
+public class TodoItemDeletedEvent(TodoItem item) : DomainEvent
 {
-    public TodoItem Item { get; }
-    public TodoItemDeletedEvent(TodoItem item)
-    {
-        Item = item;
-    }
+    public TodoItem Item { get; } = item;
 }

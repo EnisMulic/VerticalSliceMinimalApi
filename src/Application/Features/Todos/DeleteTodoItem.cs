@@ -37,18 +37,13 @@ public class DeleteTodoItemModule : ICarterModule
 
 public record DeleteTodoItemCommand(int Id) : IRequest;
 
-public class DeleteTodoItemCommandHandler : IRequestHandler<DeleteTodoItemCommand, Unit>
+public class DeleteTodoItemCommandHandler(ApplicationDbContext context) : IRequestHandler<DeleteTodoItemCommand, Unit>
 {
-    private readonly ApplicationDbContext _context;
-
-    public DeleteTodoItemCommandHandler(ApplicationDbContext context)
-    {
-        _context = context;
-    }
+    private readonly ApplicationDbContext _context = context;
 
     public async Task<Unit> Handle(DeleteTodoItemCommand request, CancellationToken cancellationToken)
     {
-        var item = await _context.TodoItems.FindAsync(new object?[] { request.Id }, cancellationToken: cancellationToken)
+        var item = await _context.TodoItems.FindAsync([request.Id], cancellationToken: cancellationToken)
             ?? throw new NotFoundException(nameof(TodoItem), request.Id);
 
         _context.TodoItems.Remove(item);

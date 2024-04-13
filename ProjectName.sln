@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{365C1CDE-4FA3-48FF-93BC-B41C4A8D6749}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		global.json = global.json
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{84E4F488-AD96-4861-8A7C-60DC688CB412}"
