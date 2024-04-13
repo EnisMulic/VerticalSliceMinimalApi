@@ -35,18 +35,13 @@ public class CompleteTodoItemModule : ICarterModule
 
 public record CompleteTodoCommand(int Id) : IRequest;
 
-public class CompleteTodoCommandHandler : IRequestHandler<CompleteTodoCommand, Unit>
+public class CompleteTodoCommandHandler(ApplicationDbContext context) : IRequestHandler<CompleteTodoCommand, Unit>
 {
-    private readonly ApplicationDbContext _context;
-
-    public CompleteTodoCommandHandler(ApplicationDbContext context)
-    {
-        _context = context;
-    }
+    private readonly ApplicationDbContext _context = context;
 
     public async Task<Unit> Handle(CompleteTodoCommand request, CancellationToken cancellationToken)
     {
-        var item = await _context.TodoItems.FindAsync(new object?[] { request.Id }, cancellationToken: cancellationToken)
+        var item = await _context.TodoItems.FindAsync([request.Id], cancellationToken: cancellationToken)
             ?? throw new NotFoundException(nameof(TodoItem), request.Id);
 
         if (!item.Done)

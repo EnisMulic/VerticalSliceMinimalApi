@@ -42,7 +42,7 @@ public class SqlServerTestDatabase : ITestDatabase
 
         _respawner = await Respawner.CreateAsync(_connectionString, new RespawnerOptions
         {
-            TablesToIgnore = new Respawn.Graph.Table[] { "__EFMigrationsHistory" }
+            TablesToIgnore = ["__EFMigrationsHistory"]
         });
     }
 

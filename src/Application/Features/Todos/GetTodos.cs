@@ -38,16 +38,10 @@ public class GetTodosModule : ICarterModule
 
 public record GetTodosQuery : IRequest<List<TodoListResponse>>;
 
-public class GetTodosQueryHandler : IRequestHandler<GetTodosQuery, List<TodoListResponse>>
+public class GetTodosQueryHandler(ApplicationDbContext context, IMapper mapper) : IRequestHandler<GetTodosQuery, List<TodoListResponse>>
 {
-    private readonly ApplicationDbContext _context;
-    private readonly IMapper _mapper;
-
-    public GetTodosQueryHandler(ApplicationDbContext context, IMapper mapper)
-    {
-        _context = context;
-        _mapper = mapper;
-    }
+    private readonly ApplicationDbContext _context = context;
+    private readonly IMapper _mapper = mapper;
 
     public async Task<List<TodoListResponse>> Handle(GetTodosQuery request, CancellationToken cancellationToken)
     {

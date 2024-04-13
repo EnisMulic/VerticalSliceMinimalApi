@@ -7,18 +7,12 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace Application.Infrastructure.Persistance.Interceptors;
 
-public class AuditableEntityInterceptor : SaveChangesInterceptor
+public class AuditableEntityInterceptor(
+    ICurrentUserService currentUserService,
+    IDateTime dateTime) : SaveChangesInterceptor
 {
-    private readonly ICurrentUserService _currentUserService;
-    private readonly IDateTime _dateTime;
-
-    public AuditableEntityInterceptor(
-        ICurrentUserService currentUserService,
-        IDateTime dateTime)
-    {
-        _currentUserService = currentUserService;
-        _dateTime = dateTime;
-    }
+    private readonly ICurrentUserService _currentUserService = currentUserService;
+    private readonly IDateTime _dateTime = dateTime;
 
     public override InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)
     {

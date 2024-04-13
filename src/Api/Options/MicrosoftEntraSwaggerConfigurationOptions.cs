@@ -7,14 +7,9 @@ using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Api.Options;
 
-public class MicrosoftEntraSwaggerConfigurationOptions : IConfigureOptions<SwaggerGenOptions>
+public class MicrosoftEntraSwaggerConfigurationOptions(IOptions<MicrosoftEntraOptions> options) : IConfigureOptions<SwaggerGenOptions>
 {
-    private readonly MicrosoftEntraOptions _options;
-
-    public MicrosoftEntraSwaggerConfigurationOptions(IOptions<MicrosoftEntraOptions> options)
-    {
-        _options = options.Value;
-    }
+    private readonly MicrosoftEntraOptions _options = options.Value;
 
     public void Configure(SwaggerGenOptions options)
     {

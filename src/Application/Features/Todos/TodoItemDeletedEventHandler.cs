@@ -7,14 +7,9 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.Features.Todos;
 
-public class TodoItemDeletedHandler : INotificationHandler<TodoItemDeletedEvent>
+public class TodoItemDeletedHandler(ILogger<TodoItemDeletedHandler> logger) : INotificationHandler<TodoItemDeletedEvent>
 {
-    private readonly ILogger<TodoItemDeletedHandler> _logger;
-
-    public TodoItemDeletedHandler(ILogger<TodoItemDeletedHandler> logger)
-    {
-        _logger = logger;
-    }
+    private readonly ILogger<TodoItemDeletedHandler> _logger = logger;
 
     public Task Handle(TodoItemDeletedEvent notification, CancellationToken cancellationToken)
     {

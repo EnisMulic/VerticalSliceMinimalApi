@@ -46,14 +46,9 @@ public class CreateTodoListCommandValidator : AbstractValidator<CreateTodoListCo
     }
 }
 
-public class CreateTodoListCommandHandler : IRequestHandler<CreateTodoListCommand, int>
+public class CreateTodoListCommandHandler(ApplicationDbContext context) : IRequestHandler<CreateTodoListCommand, int>
 {
-    private readonly ApplicationDbContext _context;
-
-    public CreateTodoListCommandHandler(ApplicationDbContext context)
-    {
-        _context = context;
-    }
+    private readonly ApplicationDbContext _context = context;
 
     public async Task<int> Handle(CreateTodoListCommand request, CancellationToken cancellationToken)
     {
