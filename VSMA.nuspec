@@ -3,10 +3,10 @@
   <metadata>
 
     <id>VerticalSliceMinimalApi</id>
-    <version>7.0.1</version>
+    <version>8.0.0</version>
     <title>Vertical Slice Minimal Api</title>
     <authors>EnisMulic</authors>
-    <description>Vertical Slice Minimal Api Template for .NET 7.</description>
+    <description>Vertical Slice Minimal Api Template for .NET 8.</description>
     <summary>
       A Vertical Slice Minimal Api Template for creating apps with ASP.NET Core.
     </summary>
