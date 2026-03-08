@@ -4,7 +4,7 @@ namespace Application.Domain.Common;
 
 public interface IHasDomainEvent
 {
-    public List<DomainEvent> DomainEvents { get; }
+    List<DomainEvent> DomainEvents { get; }
 }
 
 public abstract class DomainEvent : INotification

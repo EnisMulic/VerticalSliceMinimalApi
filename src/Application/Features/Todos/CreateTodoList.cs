@@ -1,5 +1,4 @@
-﻿using Application.Common.Models;
-using Application.Domain.Entities;
+﻿using Application.Domain.Entities;
 using Application.Domain.ValueObjects;
 using Application.Infrastructure.Persistance;
 
@@ -26,12 +25,7 @@ public class CreateTodoListModule : ICarterModule
         })
         .Produces<int>(StatusCodes.Status201Created)
         .Produces(StatusCodes.Status400BadRequest)
-        .WithOpenApi(operation => new(operation)
-        {
-            Tags = OpenApiTags.TodoList,
-            Summary = "Create a todo list",
-            Description = "Create a todo list",
-        });
+        .WithTags(OpenApiTags.TodoList);
     }
 }
 

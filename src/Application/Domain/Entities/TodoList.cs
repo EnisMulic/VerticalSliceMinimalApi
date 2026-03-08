@@ -8,7 +8,7 @@ public class TodoList : BaseAuditableEntity, ISoftDelete
 {
     public string Title { get; private set; }
     public Colour Colour { get; private set; }
-    public IList<TodoItem> Items { get; private set; } = new List<TodoItem>();
+    public IList<TodoItem> Items { get; private set; } = [];
     public bool IsDeleted { get; set; }
 
     private TodoList() { }
@@ -17,7 +17,7 @@ public class TodoList : BaseAuditableEntity, ISoftDelete
     {
         Title = title;
         Colour = colour;
-        Items = new List<TodoItem>();
+        Items = [];
     }
 
     public static TodoList Create(string title, Colour colour)

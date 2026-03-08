@@ -15,7 +15,7 @@ public class MappingProfile : Profile
     {
         var mapFromType = typeof(IMapFrom<>);
 
-        var mappingMethodName = nameof(IMapFrom<object>.Mapping);
+        var mappingMethodName = nameof(IMapFrom<>.Mapping);
 
         bool HasInterface(Type t)
         {
@@ -34,7 +34,7 @@ public class MappingProfile : Profile
 
             if (methodInfo != null)
             {
-                methodInfo.Invoke(instance, new object[] { this });
+                methodInfo.Invoke(instance, [this]);
             }
             else
             {
@@ -46,7 +46,7 @@ public class MappingProfile : Profile
                     {
                         var interfaceMethodInfo = @interface.GetMethod(mappingMethodName, argumentTypes);
 
-                        interfaceMethodInfo?.Invoke(instance, new object[] { this });
+                        interfaceMethodInfo?.Invoke(instance, [this]);
                     }
                 }
             }

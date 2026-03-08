@@ -1,6 +1,5 @@
 ﻿using Application.Authorization;
 using Application.Common.Exceptions;
-using Application.Common.Models;
 using Application.Domain.Entities;
 using Application.Infrastructure.Persistance;
 
@@ -26,12 +25,7 @@ public class DeleteTodoItemModule : ICarterModule
         })
         .RequireAuthorization(policy => policy.RequireRole(Roles.Administrator))
         .Produces(StatusCodes.Status204NoContent)
-        .WithOpenApi(operation => new(operation)
-        {
-            Tags = OpenApiTags.TodoList,
-            Summary = "Delete a todo item",
-            Description = "Delete a todo item",
-        });
+        .WithTags(OpenApiTags.TodoList);
     }
 }
 
