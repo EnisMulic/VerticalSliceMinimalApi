@@ -18,7 +18,7 @@ public class TodoListConfiguration : IEntityTypeConfiguration<TodoList>
         builder
             .OwnsOne(b => b.Colour);
 
-        builder.HasMany<TodoItem>(i => i.Items)
+        builder.HasMany(i => i.Items)
             .WithOne(i => i.TodoList)
             .OnDelete(DeleteBehavior.Cascade);
     }

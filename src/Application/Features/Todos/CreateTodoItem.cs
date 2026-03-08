@@ -1,6 +1,5 @@
 ﻿using Application.Common.Exceptions;
 using Application.Common.Interfaces;
-using Application.Common.Models;
 using Application.Domain.Entities;
 using Application.Domain.Enums;
 using Application.Infrastructure.Persistance;
@@ -31,12 +30,7 @@ public class CreateTodoItemModule : ICarterModule
         })
         .Produces<int>(StatusCodes.Status201Created)
         .Produces(StatusCodes.Status400BadRequest)
-        .WithOpenApi(operation => new(operation)
-        {
-            Tags = OpenApiTags.TodoList,
-            Summary = "Create a todo item",
-            Description = "Create a todo item",
-        });
+        .WithTags(OpenApiTags.TodoList);
     }
 }
 

@@ -6,6 +6,7 @@ using Application.Features.Todos;
 using static Application.IntegrationTests.Testing;
 
 namespace Application.IntegrationTests.Features.Todos;
+
 public class CreateTodoListCommandTests : BaseTestFixture
 {
     [Test]

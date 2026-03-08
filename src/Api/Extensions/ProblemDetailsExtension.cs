@@ -5,7 +5,6 @@ using Hellang.Middleware.ProblemDetails;
 
 using Microsoft.AspNetCore.Mvc;
 
-using ProblemDetailsOptions = Hellang.Middleware.ProblemDetails.ProblemDetailsOptions;
 using ValidationException = Application.Common.Exceptions.ValidationException;
 
 namespace Api.Extensions;
@@ -14,7 +13,7 @@ public static class ProblemDetailsExtension
 {
     public static IServiceCollection AddAndConfigureProblemDetails(this IServiceCollection services)
     {
-        services.AddProblemDetails((ProblemDetailsOptions options) =>
+        services.AddProblemDetails(options =>
         {
             options.IncludeExceptionDetails = (ctx, ex) => Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development";
 

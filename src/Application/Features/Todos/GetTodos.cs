@@ -1,5 +1,4 @@
-﻿using Application.Common.Models;
-using Application.Infrastructure.Persistance;
+﻿using Application.Infrastructure.Persistance;
 
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
@@ -27,12 +26,7 @@ public class GetTodosModule : ICarterModule
         .RequireAuthorization()
         .Produces<List<TodoListResponse>>(StatusCodes.Status200OK)
         .Produces(StatusCodes.Status400BadRequest)
-        .WithOpenApi(operation => new(operation)
-        {
-            Tags = OpenApiTags.TodoList,
-            Summary = "Get todos",
-            Description = "Get todos",
-        });
+        .WithTags(OpenApiTags.TodoList);
     }
 }
 

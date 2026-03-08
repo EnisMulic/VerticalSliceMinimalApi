@@ -1,5 +1,4 @@
 ﻿using Application.Common.Exceptions;
-using Application.Common.Models;
 using Application.Domain.Entities;
 using Application.Infrastructure.Persistance;
 
@@ -24,12 +23,7 @@ public class CompleteTodoItemModule : ICarterModule
             return Results.NoContent();
         })
         .Produces(StatusCodes.Status204NoContent)
-        .WithOpenApi(operation => new(operation)
-        {
-            Tags = OpenApiTags.TodoList,
-            Summary = "Complete a todo item",
-            Description = "Complete a todo item",
-        });
+        .WithTags(OpenApiTags.TodoList);
     }
 }
 
