@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - "VSMA.nuspec"
+      - "VSMA.csproj"
   workflow_dispatch:
 
 jobs:
@@ -18,13 +18,13 @@ jobs:
       - uses: actions/checkout@v3
         name: Checkout code
 
-      - uses: nuget/setup-nuget@v1
-        name: Setup NuGet
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
         with:
-          nuget-version: "latest"
+          dotnet-version: "10.x"
 
       - name: Create the package
-        run: dotnet pack ProjectName.sln -c Release -p:NuspecFile=~/VSMA.nuspec
+        run: dotnet pack ProjectName.slnx -c Release -o ./nupkgs
 
       - name: Publish the package
-        run: nuget push *.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}} -SkipDuplicate
+        run: dotnet nuget push ./nupkgs/*.nupkg --source 'https://api.nuget.org/v3/index.json' --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate

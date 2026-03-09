@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>VerticalSliceMinimalApi</PackageId>
+    <PackageVersion>10.0.0</PackageVersion>
+    <Title>Vertical Slice Minimal Api</Title>
+    <Authors>EnisMulic</Authors>
+    <Description>Vertical Slice Minimal Api Template for .NET 10.</Description>
+    <PackageSummary>A Vertical Slice Minimal Api Template for creating apps with ASP.NET Core.</PackageSummary>
+    <PackageProjectUrl>https://github.com/EnisMulic/VerticalSliceMinimalApi</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/EnisMulic/VerticalSliceMinimalApi.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryBranch>main</RepositoryBranch>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <PackageTags>vertical-slice minimal-api project template csharp dotnet</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageType>Template</PackageType>
+
+    <TargetFramework>net10.0</TargetFramework>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <IsPackable>true</IsPackable>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <NoDefaultExcludes>true</NoDefaultExcludes>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+    <Content Include="**\*"
+             Exclude="**\bin\**;**\obj\**;**\nupkgs\**;.vs\**;.git\**;.github\workflows\nuget.yml;.github\ISSUE_TEMPLATE\**;LICENSE;README.md;VSMA.nuspec;VSMA.csproj"
+             PackagePath="content\%(RecursiveDir)%(Filename)%(Extension)" />
+  </ItemGroup>
+
+</Project>
