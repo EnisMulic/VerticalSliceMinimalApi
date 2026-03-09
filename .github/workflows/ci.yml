@@ -25,10 +25,10 @@ jobs:
           global-json-file: global.json
 
       - name: Lint
-        run: dotnet format --verify-no-changes --verbosity diagnostic
+        run: dotnet format --verify-no-changes --verbosity diagnostic ProjectName.slnx
 
       - name: Build
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build --configuration Release --no-restore ProjectName.slnx
 
       - name: Test
         run: |
