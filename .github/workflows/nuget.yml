@@ -23,7 +23,7 @@ jobs:
           nuget-version: "latest"
 
       - name: Create the package
-        run: nuget pack VSMA.nuspec -NoDefaultExcludes
+        run: dotnet pack ProjectName.sln -c Release -p:NuspecFile=VSMA.nuspec
 
       - name: Publish the package
         run: nuget push *.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}} -SkipDuplicate
