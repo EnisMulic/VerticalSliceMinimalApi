@@ -7,7 +7,7 @@
 Install the template from Nuget Gallery
 
 ```
-dotnet new install VerticalSliceMinimalApi::7.0.0
+dotnet new install VerticalSliceMinimalApi::10.0.0
 ```
 
 ## Local Development
@@ -66,7 +66,7 @@ To test/develop the template with specific options add a `<DefineConstants>` blo
 
 ```diff
 <PropertyGroup>
-  <TargetFramework>net7.0</TargetFramework>
+  <TargetFramework>net10.0</TargetFramework>
   <Nullable>enable</Nullable>
   <ImplicitUsings>enable</ImplicitUsings>
 
